@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: rgb(240, 239, 239);
+    padding:3%;
+}
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+    grid-template-rows: repeat(3, minmax(auto-fit, 50vh));
+    grid-gap: 2%;
+}
+
+.listBlock {
+    background-color: rgb(147, 184, 194);
+    border-radius: 10px;
+    box-shadow: 10px 10px 8px #888888;
+    grid-area: span 2 / auto;
+    overflow-y: scroll;
+    max-height: 87vh;
+}
+.listBlock::-webkit-scrollbar{
+    display: none;
+}
+.listBlockHeader {
+    padding-top: 4%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 4%;
+}
+.listBlockHeader>p {
+    padding: 10px 0;
+}
+.listBlockBody {
+    padding-bottom:2%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.textAreaBlock {
+    padding: 5%;
+    border-radius: 10px;
+}
+.textArea {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    border: none;
+    border-radius: 5px;
+    padding: 5%;
+    box-shadow: 10px 10px 8px #888888;
+}
+
+.listDesign {
+    display: grid;
+    grid-template-columns: 21fr 1fr 1fr 1fr;
+    grid-gap: 2px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 1.1em;
+    padding: 1%;
+    background-color: rgb(255, 184, 51);
+    box-shadow: 10px 10px 8px #757575;
+}
+.listDesign:hover{
+    background-color: rgb(255, 98, 0);
+}
+.checkBoxDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.checkBoxDiv>input {
+    cursor: pointer;
+}
+.crossButtonDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.crossButtonDiv>img {
+    cursor: pointer;
+    border: none;
+    width: 70%;
+    padding: 10%;
+}
+.editDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.editImage{
+    cursor: pointer;
+    border: none;
+    width: 80%;
+    padding: 10%;
+}
