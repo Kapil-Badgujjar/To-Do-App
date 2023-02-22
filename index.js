@@ -11,6 +11,7 @@ document.querySelector(".close_btn").addEventListener("click",function(){
   let x = document.querySelector(".popUpShow");
   x.setAttribute("class","popUpHide");
   inputTextArea.value="";
+  inputTextArea.focus();
 });
 inputTextArea.addEventListener("keyup", function (event) {
   if (event.code == "Enter") {
@@ -19,6 +20,8 @@ inputTextArea.addEventListener("keyup", function (event) {
       let x = document.querySelector(".popUpHide");
       x.setAttribute("class", "popUpShow");
       inputTextArea.value="";
+      inputTextArea.blur();
+      x.focus();
       return;
     }
     let a = {
@@ -29,6 +32,7 @@ inputTextArea.addEventListener("keyup", function (event) {
     saveToLocalStorage(JSON.stringify(a), false);
     addListElement(keyId);
     keyId++;
+    inputTextArea.blur();
   }
 });
 
@@ -78,7 +82,7 @@ function createListDivElement(mydata, myflag, myId) {
   editimg.setAttribute("id",`my-edit-image${myId}`);
   editimg.setAttribute("src","editIcon.png");
   editimg.addEventListener("click",function(){
-    editTask(`my-div${myId}`,`text-Id${myId}`,myId);
+    editTask(`my-div${myId}`,`text-Id${myId}`,`my-id${myId}`,myId);
   });
   e.appendChild(editimg);
   d.appendChild(a);
@@ -113,15 +117,16 @@ function deleteDiv(divId, localId) {
   item.parentElement.removeChild(item);
 }
 
-function editTask(editId,editTextId,localId){
+function editTask(editId,editTextId,checkboxId,localId){
   let text;
+  console.log(checkboxId);
   let target_parent = document.getElementById(editId);
   let target_child = document.getElementById(editTextId);
+  let checkbox = document.getElementById(checkboxId);
   let new_element = document.createElement("input");
   new_element.setAttribute("class","new_input_box");
   new_element.setAttribute("id","edit_entery");
   target_parent.replaceChild(new_element,target_child);
-
   new_element.addEventListener("keyup",function(event){
     if(event.code=="Enter"){
       text=new_element.value.trim();
@@ -135,6 +140,7 @@ function editTask(editId,editTextId,localId){
       new_div.setAttribute("id", `text-Id${localId}`);
       new_div.innerHTML = text;
       target_parent.replaceChild(new_div,new_element);
+      checkbox.checked=false;
     }
   });
 
