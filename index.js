@@ -7,12 +7,17 @@ function saveToLocalStorage(s) {
 function getListData(num) {
   return JSON.parse(localStorage.getItem(num));
 }
-
+document.querySelector(".close_btn").addEventListener("click",function(){
+  let x = document.querySelector(".popUpShow");
+  x.setAttribute("class","popUpHide");
+  inputTextArea.value="";
+});
 inputTextArea.addEventListener("keyup", function (event) {
   if (event.code == "Enter") {
     s = inputTextArea.value.trim();
     if(s=="") {
-      alert("Empty!")
+      let x = document.querySelector(".popUpHide");
+      x.setAttribute("class", "popUpShow");
       inputTextArea.value="";
       return;
     }
