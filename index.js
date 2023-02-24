@@ -126,7 +126,23 @@ function editTask(editId,editTextId,checkboxId,localId){
   let new_element = document.createElement("input");
   new_element.setAttribute("class","new_input_box");
   new_element.setAttribute("id","edit_entery");
+  new_element.value=target_child.innerHTML;
+  new_element.addEventListener("focusout",function(){
+    text=new_element.value.trim();
+      let a = {
+        data: text,
+        flag: false,
+      }
+      localStorage.setItem(localId,JSON.stringify(a));
+      let new_div = document.createElement("div");
+      new_div.setAttribute("class","listText");
+      new_div.setAttribute("id", `text-Id${localId}`);
+      new_div.innerHTML = text;
+      target_parent.replaceChild(new_div,new_element);
+      checkbox.checked=false;
+  });
   target_parent.replaceChild(new_element,target_child);
+  new_element.focus();
   new_element.addEventListener("keyup",function(event){
     if(event.code=="Enter"){
       text=new_element.value.trim();

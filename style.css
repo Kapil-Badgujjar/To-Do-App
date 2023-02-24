@@ -101,7 +101,7 @@ body {
 .new_input_box {
     border: none;
     border-radius: 5px;
-    box-shadow: 0 0 5px #00e385;
+    box-shadow: 0 0 3px #ac4c4cee;
     padding: 0 2%;
 }
 .new_input_box:focus {
