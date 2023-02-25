@@ -14,7 +14,7 @@ document.querySelector(".close_btn").addEventListener("click",function(){
   inputTextArea.focus();
 });
 inputTextArea.addEventListener("keyup", function (event) {
-  if (event.code == "Enter") {
+  if (event.code == "Enter"|| event.keyCode==13||event.key=="Enter") {
     s = inputTextArea.value.trim();
     if(s=="") {
       let x = document.querySelector(".popUpHide");
@@ -129,6 +129,8 @@ function editTask(editId,editTextId,checkboxId,localId){
   new_element.value=target_child.innerHTML;
   new_element.addEventListener("focusout",function(){
     text=new_element.value.trim();
+
+    if(text!=""&&text!=target_child.innerHTML) {
       let a = {
         data: text,
         flag: false,
@@ -140,11 +142,28 @@ function editTask(editId,editTextId,checkboxId,localId){
       new_div.innerHTML = text;
       target_parent.replaceChild(new_div,new_element);
       checkbox.checked=false;
+     }
+     else{
+      let myF;
+      if(checkbox.checked) myF=true; else myF=false;
+      let a = {
+        data: target_child.innerHTML,
+        flag: myF,
+      }
+      localStorage.setItem(localId,JSON.stringify(a));
+      let new_div = document.createElement("div");
+      new_div.setAttribute("class","listText");
+      new_div.setAttribute("id", `text-Id${localId}`);
+      new_div.innerHTML = target_child.innerHTML;
+      target_parent.replaceChild(new_div,new_element);
+      checkbox.checked=myF;
+      if(myF) new_div.style.textDecoration="line-through";
+     }
   });
   target_parent.replaceChild(new_element,target_child);
   new_element.focus();
   new_element.addEventListener("keyup",function(event){
-    if(event.code=="Enter"){
+    if(event.code=="Enter"||event.keyCode=="13"||event.key=="Enter"){
       text=new_element.value.trim();
       let a = {
         data: text,
